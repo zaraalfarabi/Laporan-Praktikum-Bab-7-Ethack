@@ -1,4 +1,7 @@
 # Dokumentasi SQL Injection — Bab 7
+- Nama: Az Zahra Fiddien Al Farabi
+- Kelas: B
+- NRP: 5027251021
 
 ## Info Umum
 - **Target**: DVWA (target utama) + Mutillidae II (latihan tambahan, lihat Bagian 6)
@@ -40,10 +43,12 @@
 > Catatan: hash admin & smithy identik → password sama. `5f4dcc3b...` = MD5 dari kata `password`.
  
  ekstraksi nama tabel:
-![alt text](image-1.png)
+<img width="1813" height="499" alt="image" src="https://github.com/user-attachments/assets/07131ea5-c29a-4604-a1a3-61c787dc5de3" />
+
 
 ekstraksi data users:
-![alt text](<Screenshot 2026-10-14 005642.png>)
+<img width="1918" height="715" alt="image" src="https://github.com/user-attachments/assets/8f2d92e4-a075-49ae-8651-be2d356564d0" />
+
 
 ## 3. Blind Boolean-Based (Manual)
  
@@ -66,19 +71,23 @@ python3 blind_sqli_helper.py \
 ```
  
 - Bukti `1' AND 1=1-- -` yaitu “User ID exists in the database.”:
-![alt text](<Screenshot 2026-10-14 010033.png>)
+<img width="1918" height="297" alt="image" src="https://github.com/user-attachments/assets/36fda0b9-2f98-41a6-90ae-d5b5b8d545da" />
+
 
 - Bukti `1' AND 1=2-- -` yaitu “User ID is MISSING from the database.”:
-![alt text](<Screenshot 2026-10-14 010102.png>)
+<img width="1918" height="400" alt="image" src="https://github.com/user-attachments/assets/d51f87f0-c138-446a-8459-5fc15c7c84c5" />
+
 
 - Bukti `...SUBSTRING(...,1,1)='5` yaitu “User ID exists”:
-![alt text](<Screenshot 2026-10-14 010131.png>)
+<img width="1918" height="432" alt="image" src="https://github.com/user-attachments/assets/92177115-2e77-4463-ab8d-33171d077104" />
+
 
 - Bukti DevTools Cookies (PHPSESSID, security=low):
-![alt text](<Screenshot 2026-10-14 010353.png>)
+<img width="1918" height="220" alt="image" src="https://github.com/user-attachments/assets/1b14653e-8e42-4d65-bdf9-fb3d946a7b43" />
 
 - Bukti output `blind_sqli_helper.py`
-![alt text](<Screenshot 2026-10-14 015330.png>)
+<img width="1725" height="669" alt="image" src="https://github.com/user-attachments/assets/2f140c8b-043a-4547-ac58-9aadcc9e867b" />
+
 
 ## 4. Validasi dengan sqlmap
 - **Command yang dipakai**:
@@ -108,13 +117,14 @@ python3 blind_sqli_helper.py \
   | smithy | 5f4dcc3b... | password |
 
 - Bukti daftar database:
-![alt text](<Screenshot 2026-10-14 020010.png>)
+<img width="1908" height="700" alt="image" src="https://github.com/user-attachments/assets/6f67d6f6-0998-433e-8feb-13b4796fffee" />
+
 
 - Bukti daftar tabel di dvwa:
-![alt text](image-2.png)
+<img width="1876" height="747" alt="image" src="https://github.com/user-attachments/assets/f0d35cfa-35f3-4a61-9467-fe1dbf162c7a" />
 
 - Bukti dump tabel users (+ crack hash):
-![alt text](image-3.png)
+<img width="1918" height="736" alt="image" src="https://github.com/user-attachments/assets/db724680-c843-4ddf-85f4-c7ef0c091509" />
 
 ## 5. Perbandingan Waktu Manual vs Otomatis
  
@@ -160,16 +170,18 @@ Kesimpulannya, sqlmap unggul dalam kecepatan dan otomatisasi, sedangkan pengujia
   - Error Mutillidae membocorkan query utuh + path file → tambahan kerentanan *verbose error disclosure*.
 
 - Bukti deteksi error `'`  errno 1064, query bocor, tabel accounts:
-![alt text](<Screenshot 2026-10-14 011917.png>)
+<img width="1735" height="493" alt="image" src="https://github.com/user-attachments/assets/d7769c37-9485-4a72-942a-299f9a90dfe8" />
+
 
 - Bukti `' ORDER BY 8-- -`: 
-![alt text](<Screenshot 2026-10-14 012247.png>)
+<img width="1702" height="673" alt="image" src="https://github.com/user-attachments/assets/5c3ef393-6ca2-4161-bbb6-bd465d6bc568" />
 
 - Bukti `' UNION SELECT 1,2,3,4,5,6,7-- -`:
-![alt text](<Screenshot 2026-10-14 012321.png>)
+<img width="1668" height="339" alt="image" src="https://github.com/user-attachments/assets/a3122bc4-f69e-468e-96c2-89e9b1e8b7ab" />
 
 - Bukti `' UNION SELECT 1,database(),version(),4,5,6,7-- -`:
-![alt text](<Screenshot 2026-10-14 012354.png>)
+<img width="1714" height="319" alt="image" src="https://github.com/user-attachments/assets/ed323020-72e1-4c73-8b6a-9714e11f5e6c" />
 
 - Bukti `' UNION SELECT 1,username,password,4,5,6,7 FROM accounts-- -`:
-![alt text](<Screenshot 2026-10-14 012430.png>)
+<img width="1729" height="706" alt="image" src="https://github.com/user-attachments/assets/d50e5047-4a67-4865-bf26-83feb8216034" />
+
