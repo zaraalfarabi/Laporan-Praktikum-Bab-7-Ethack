@@ -15,7 +15,7 @@
   - DBMS = **MariaDB** (fork MySQL → sintaks MySQL berlaku: `database()`, `version()`, `information_schema`, komentar `-- -`).
   - Dari address bar diketahui input lewat **parameter GET `id`** (dipakai nanti untuk sqlmap).
 
- ![alt text](image.png)
+<img width="1251" height="193" alt="image" src="https://github.com/user-attachments/assets/bdb6f757-735b-40ca-942c-8c8ddee2d3b9" />
 
 ## 2. UNION-Based Injection
  
